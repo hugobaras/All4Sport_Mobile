@@ -3,6 +3,8 @@ package fr.all4sport;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
+import com.google.mlkit.vision.barcode.common.Barcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,5 +74,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void lectureCodBar() {
+        BarcodeScannerOptions options =
+                new BarcodeScannerOptions.Builder()
+                        .setBarcodeFormats(
+                                Barcode.FORMAT_CODE_128,
+                                Barcode.FORMAT_AZTEC)
+                        .build();
     }
 }
